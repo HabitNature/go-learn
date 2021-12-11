@@ -1,0 +1,8 @@
+serverPort: 8888
+
+mysql:
+  user: mysql
+  password: pwd@mysql.com
+  host: localhost
+  port: 3306
+  database: t_learn
