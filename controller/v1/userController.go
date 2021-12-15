@@ -4,8 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"go-learn/model"
 	"go-learn/request"
-	"go-learn/utils"
-	"net/http"
+	"go-learn/response"
 )
 
 type UserController struct {
@@ -17,7 +16,7 @@ func (c UserController) Create(ctx *gin.Context) {
 	err := request.Validate(ctx, &req)
 
 	if err != nil {
-		ctx.JSONP(http.StatusOK, gin.H{"code": 400, "data": "", "msg": err.Error(), "traceId": utils.NewUUID()})
+		response.Error(ctx, err)
 		return
 	}
 
@@ -27,8 +26,8 @@ func (c UserController) Create(ctx *gin.Context) {
 	err = model.DbInstance.Create(&user).Error
 
 	if err != nil {
-		ctx.JSONP(http.StatusOK, gin.H{"code": 400, "data": "", "msg": err.Error(), "traceId": utils.NewUUID()})
+		response.Error(ctx, err)
 	} else {
-		ctx.JSONP(http.StatusOK, gin.H{"code": 200, "data": user, "msg": "", "traceId": utils.NewUUID()})
+		response.Ok(ctx, user)
 	}
 }
