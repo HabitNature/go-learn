@@ -14,7 +14,7 @@ type UserController struct {
 func (c UserController) Create(ctx *gin.Context) {
 	req := request.UserCreate{}
 
-	err := ctx.ShouldBind(&req)
+	err := request.Validate(ctx, &req)
 
 	if err != nil {
 		ctx.JSONP(http.StatusOK, gin.H{"code": 400, "data": "", "msg": err.Error(), "traceId": utils.NewUUID()})

@@ -5,12 +5,16 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 	"go-learn/controller/v1"
+	"go-learn/middleware"
 	"go-learn/utils"
 	"net/http"
 )
 
 func InitGinRoutes() {
 	g := gin.New()
+
+	// 设置参数验证中间件
+	g.Use(middleware.ValidateMiddleware())
 
 	g.NoRoute(func(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"code": 400, "data": "", "msg": "路径不存在", "traceId": utils.NewUUID()})
