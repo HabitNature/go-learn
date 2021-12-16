@@ -10,6 +10,13 @@ import (
 type UserController struct {
 }
 
+// @Summary 创建用户
+// @Description 创建用户
+// @Tags 用户
+// @Accept json
+// @Produce json
+// @Param name formData string true "用户名"
+// @Router /user/create [Post]
 func (c UserController) Create(ctx *gin.Context) {
 	req := request.UserCreate{}
 

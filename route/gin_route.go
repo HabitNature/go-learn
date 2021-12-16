@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
+	"github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
 	"go-learn/controller/v1"
 	"go-learn/middleware"
 	"go-learn/utils"
@@ -16,6 +18,8 @@ func InitGinRoutes() {
 	g.NoRoute(func(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"code": 400, "data": "", "msg": "路径不存在", "traceId": utils.NewUUID()})
 	})
+
+	g.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	// 设置参数验证中间件
 	g.Use(middleware.ValidateMiddleware())
