@@ -1,4 +1,4 @@
-serverPort: 8888
+server_port: 8888
 
 mysql:
   user: mysql
@@ -6,3 +6,11 @@ mysql:
   host: localhost
   port: 3306
   database: t_learn
+
+log:
+  name: log
+  # trace, debug, info, warn, error, fatal
+  level: debug
+  time_format: 2006-01002 15:04:05.999
+  # true, false
+  file_number: false
