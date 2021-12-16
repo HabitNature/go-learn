@@ -14,3 +14,5 @@ log:
   time_format: 2006-01002 15:04:05.999
   # true, false
   file_number: false
+jwt:
+  key: jwt_key

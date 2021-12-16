@@ -20,7 +20,11 @@ func InitGinRoutes() {
 	// 设置参数验证中间件
 	g.Use(middleware.ValidateMiddleware())
 
+	// 设置gin日志中间件
 	g.Use(middleware.Logger())
+
+	// 设置jwt token中间件
+	//g.Use(middleware.Jwt())
 
 	user := g.Group("/v1/user")
 	userController := controller.UserController{}
