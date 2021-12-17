@@ -30,9 +30,11 @@ func InitGinRoutes() {
 	// 设置jwt token中间件
 	//g.Use(middleware.Jwt())
 
-	user := g.Group("/v1/user")
 	userController := controller.UserController{}
-	user.POST("/create", userController.Create)
+	user := g.Group("/v1/user")
+	{
+		user.POST("/create", userController.Create)
+	}
 
 	addr := fmt.Sprintf("localhost:%s", viper.GetString("server_port"))
 	err := g.Run(addr)

@@ -5,6 +5,7 @@ import (
 	"go-learn/common"
 	"go-learn/common/loggger"
 	"go-learn/config"
+	_ "go-learn/docs"
 	"go-learn/model"
 	"go-learn/route"
 )
