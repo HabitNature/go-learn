@@ -13,7 +13,7 @@ import (
 )
 
 func InitGinRoutes() {
-	g := gin.New()
+	g := gin.Default()
 
 	g.NoRoute(func(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"code": 400, "data": "", "msg": "路径不存在", "traceId": utils.NewUUID()})
@@ -33,7 +33,8 @@ func InitGinRoutes() {
 	userController := controller.UserController{}
 	user := g.Group("/v1/user")
 	{
-		user.POST("/create", userController.Create)
+		user.POST("/signup", userController.AccountSignUp)
+		user.POST("/signin", userController.AccountSignIn)
 	}
 
 	addr := fmt.Sprintf("localhost:%s", viper.GetString("server_port"))

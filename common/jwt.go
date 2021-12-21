@@ -40,7 +40,8 @@ func GenerateToken(user, pwd string) (string, error) {
 		},
 	}
 
-	tokenClaims := jwtgo.NewWithClaims(jwtgo.SigningMethodES256, c)
+	tokenClaims := jwtgo.NewWithClaims(jwtgo.SigningMethodHS256, c)
+
 	token, err := tokenClaims.SignedString([]byte(key))
 
 	if err != nil {

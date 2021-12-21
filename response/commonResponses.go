@@ -4,7 +4,13 @@ import (
 	"github.com/gin-gonic/gin"
 	"go-learn/utils"
 	"net/http"
+	"time"
 )
+
+type BaseResponse struct {
+	CreatedAt time.Time `json:"created_at" comment:"创建时间"`
+	UpdatedAt time.Time `json:"updated_at" comment:"更新时间"`
+}
 
 func OkResult(ctx *gin.Context, code int, data interface{}, msg string) {
 	ctx.JSONP(http.StatusOK, gin.H{"code": code, "data": data, "msg": msg, "uuid": utils.NewUUID()})
